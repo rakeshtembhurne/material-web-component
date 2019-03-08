@@ -235,6 +235,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mdc-layout-grid__cell">
+                            <!-- select dropdown -->
+                            <div class="mdc-select">
+                                <i class="mdc-select__dropdown-icon"></i>
+                                <select class="mdc-select__native-control">
+                                    <option value="" disabled selected></option>
+                                    <option value="grains">
+                                        Bread, Cereal, Rice, and Pasta
+                                    </option>
+                                    <option value="vegetables">
+                                        Vegetables
+                                    </option>
+                                    <option value="fruit">
+                                        Fruit
+                                    </option>
+                                </select>
+                                <label class="mdc-floating-label">Pick a Food Group</label>
+                                <div class="mdc-line-ripple"></div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,6 +289,11 @@
             document.getElementById(tab).style.display = "block";
             evt.currentTarget.className += " active";
         }
+        // Added select dropdown
+        var select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
+        select.listen('MDCSelect:change', () => {
+            alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
+        });
     </script>
 </body>
 
