@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web/dist/material-components-web.min.css">
+    <style>
+        /* Style the tab */
+        .mdc-tab-scroller__scroll-content {
+            overflow: hidden;
+        }
+    
+        /* Style the buttons inside the tab */
+        .mdc-tab-scroller__scroll-content button {
+            /* background-color: inherit; */
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        /* Style the tab content */
+        .tab-content {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,7 +39,7 @@
         <div class="mdc-drawer__header">
             <h3 class="mdc-drawer__title">Mail</h3>
             <h6 class="mdc-drawer__subtitle">email@material.io</h6>
-        </div>  
+        </div>
         <div class="mdc-drawer__content">
             <nav class="mdc-list">
                 <a class="mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
@@ -33,11 +57,8 @@
             </nav>
         </div>
     </aside>
-
     <div class="mdc-drawer-scrim"></div>
-
     <div class="mdc-drawer-app-content">
-
         <header class="mdc-top-app-bar app-bar" id="app-bar">
             <div class="mdc-top-app-bar__row">
                 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -46,24 +67,25 @@
                 </section>
             </div>
         </header>
-
         <main class="main-content" id="main-content">
             <!-- material web component tab bar -->
-            <div class="mdc-top-app-bar--fixed-adjust">
+            <div class="mdc-top-app-bar--fixed-adjust" id="dynamic-tab-bar">
                 <div class="mdc-tab-bar" role="tablist">
                     <div class="mdc-tab-scroller">
                         <div class="mdc-tab-scroller__scroll-area">
                             <div class="mdc-tab-scroller__scroll-content">
-                                <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                                <button class="mdc-tab mdc-tab--active" onclick="openTab(event, 'first')" role="tab"
+                                    aria-selected="true" tabindex="0">
                                     <span class="mdc-tab__content">
                                         <span class="mdc-tab__text-label">First Tab</span>
                                     </span>
                                     <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                                        <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                        <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline">fggg</span>
                                     </span>
                                     <span class="mdc-tab__ripple"></span>
                                 </button>
-                                <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+                                <button class="mdc-tab" role="tab" onclick="openTab(event, 'second')" aria-selected="true"
+                                    tabindex="0">
                                     <span class="mdc-tab__content">
                                         <span class="mdc-tab__text-label">Second Tab</span>
                                     </span>
@@ -72,7 +94,8 @@
                                     </span>
                                     <span class="mdc-tab__ripple"></span>
                                 </button>
-                                <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+                                <button class="mdc-tab" role="tab" onclick="openTab(event, 'third')" aria-selected="true"
+                                    tabindex="0">
                                     <span class="mdc-tab__content">
                                         <span class="mdc-tab__text-label">Third Tab</span>
                                     </span>
@@ -86,8 +109,49 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-content" id="first">
+                <!-- Added layout grid with form text fields -->
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell">
+                            <div class="mdc-text-field">
+                                <input type="text" id="my-text-field" class="mdc-text-field__input">
+                                <label class="mdc-floating-label" for="my-text-field">Hint text</label>
+                                <div class="mdc-line-ripple"></div>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell">
+                            <div class="mdc-text-field mdc-text-field--textarea">
+                                <textarea id="textarea" class="mdc-text-field__input" rows="8" cols="40"></textarea>
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="textarea" class="mdc-floating-label">Textarea Label</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdc-layout-grid__cell">
+                            <div class="mdc-text-field mdc-text-field--outlined">
+                                <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="tf-outlined" class="mdc-floating-label">Your Name</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="second">
+            </div>
+            <div class="tab-content" id="third">
+            </div>
         </main>
-
     </div>
 
     <script src="https://unpkg.com/material-components-web/dist/material-components-web.min.js"></script>
@@ -98,8 +162,25 @@
         topAppBar.listen('MDCTopAppBar:nav', () => {
             drawer.open = !drawer.open;
         });
+        // for form text fields
+        var textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
+        var textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field--textarea'));
+        var textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field--outlined'));
         // for tab bar
         var tabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+        function openTab(evt, tab) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("mdc-tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tab).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 </body>
 
